@@ -31,7 +31,7 @@ public class BaseDao {
     }
 
     //2.公共查询方法
-    public static ResultSet execute(Connection con,String sql,Object [] params, PreparedStatement pst,ResultSet result ) throws SQLException{
+    public static ResultSet execute(Connection con,PreparedStatement pst, ResultSet result,String sql,Object [] params  ) throws SQLException{
         //预编译后米娜直接执行
         pst = con.prepareStatement(sql);
         for (int i = 0; i < params.length; i++) {
