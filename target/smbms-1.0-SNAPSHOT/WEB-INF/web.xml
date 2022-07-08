@@ -1,0 +1,26 @@
+<!--tomcat server latest web config environment-->
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                      https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0"
+         metadata-complete="true">
+
+    <filter>
+        <filter-name>charFilter</filter-name>
+        <filter-class>com.market.filter.CharsetFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>charFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>hi</servlet-name>
+        <servlet-class>com.market.dao.hi</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hi</servlet-name>
+        <url-pattern>/hi</url-pattern>
+    </servlet-mapping>
+</web-app>
