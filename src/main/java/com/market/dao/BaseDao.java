@@ -1,8 +1,5 @@
 package com.market.dao;
 
-import org.apache.commons.dbcp2.BasicDataSourceFactory;
-
-import javax.sql.DataSource;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
@@ -13,25 +10,38 @@ import java.util.Properties;
  * @apiNote 数据库操纵的公共类
  */
 public class BaseDao {
-    private static DataSource dataSource =null;
+    private static String driver;
+    private static String url;
+    private static String username;
+    private static String password;
     static {
         Properties properties = new Properties();
         InputStream ins = BaseDao.class.getClassLoader().getResourceAsStream("db.properties");
         try {
             properties.load(ins);
-
-             dataSource = BasicDataSourceFactory.createDataSource(properties);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        driver = properties.getProperty("driver");
+        url = properties.getProperty("url");
+        username = properties.getProperty("username");
+        password = properties.getProperty("password");
+
     }
     //1.获取数据库连接
-    public static Connection getConnection() throws Exception{
-        return dataSource.getConnection();
+    public static Connection getConnection(){
+        Connection con = null;
+        try {
+            Class.forName(driver);
+            con = DriverManager.getConnection(url,username,password);
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
+        }
+        return con;
     }
 
     //2.公共查询方法
-    public static ResultSet execute(Connection con,PreparedStatement pst, ResultSet result,String sql,Object [] params  ) throws SQLException{
+    public static ResultSet execute(Connection con,PreparedStatement pst, ResultSet result,String sql,Object [] params) throws SQLException{
         //预编译后米娜直接执行
         pst = con.prepareStatement(sql);
         for (int i = 0; i < params.length; i++) {

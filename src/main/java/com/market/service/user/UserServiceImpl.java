@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService{
     /*@Test
     public void test(){
         UserServiceImpl us = new UserServiceImpl();
-        User admin = us.Login("admin", "123");
-        System.out.println(admin.getAddress());
+        User admin = us.Login("admin", "erewr");
+        System.out.println(admin.getUserpassword());
     }*/
 }

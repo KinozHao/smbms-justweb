@@ -19,12 +19,12 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //获取前端用户名和密码
-        String username = req.getParameter("username");
-        String password = req.getParameter("userPassword");
+        String userCode = req.getParameter("userCode");
+        String userPassword = req.getParameter("userPassword");
 
         //和数据库中密码校对，调用业务层
         UserServiceImpl use = new UserServiceImpl();
-        User user = use.Login(username, password);
+        User user = use.Login(userCode, userPassword);
         if (user != null){
             req.getSession().setAttribute(Constants.USER_SESSION,user);
             resp.sendRedirect("jsp/frame.jsp");

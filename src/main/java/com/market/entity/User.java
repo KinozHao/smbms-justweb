@@ -9,7 +9,7 @@ public class User {
 
     private String usercode;
 
-    private String username;
+    private String userName;
 
     private String userpassword;
 
@@ -48,12 +48,12 @@ public class User {
         this.usercode = usercode == null ? null : usercode.trim();
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getUserpassword() {
@@ -139,7 +139,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", usercode=" + usercode + ", username="
-				+ username + ", userpassword=" + userpassword + ", gender="
+				+ userName + ", userpassword=" + userpassword + ", gender="
 				+ gender + ", birthday=" + birthday + ", phone=" + phone
 				+ ", address=" + address + ", userrole=" + userrole
 				+ ", createdby=" + createdby + ", creationdate=" + creationdate

@@ -3,6 +3,7 @@ package com.market.dao.user;
 import com.market.entity.User;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * @author kinoz
@@ -11,5 +12,5 @@ import java.sql.Connection;
  */
 public interface UserDao {
     //得到要登陆的用户
-    User getLoginUser(Connection con,String userCode);
+    User getLoginUser(Connection con,String userCode) throws SQLException;
 }
