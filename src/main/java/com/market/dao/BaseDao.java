@@ -40,9 +40,8 @@ public class BaseDao {
         return con;
     }
 
-    //2.公共查询方法
+    //2.DQL
     public static ResultSet execute(Connection con,PreparedStatement pst, ResultSet result,String sql,Object [] params) throws SQLException{
-        //预编译后米娜直接执行
         pst = con.prepareStatement(sql);
         for (int i = 0; i < params.length; i++) {
             //setObject 占位符从1开始，数组是从0开始的
@@ -52,7 +51,7 @@ public class BaseDao {
         return result;
     }
 
-    //2.公共增删改方法
+    //2.DDL
     public static int execute(Connection con,String sql,Object [] params, PreparedStatement pst) throws SQLException{
         pst = con.prepareStatement(sql);
         for (int i = 0; i < params.length; i++) {
@@ -63,6 +62,7 @@ public class BaseDao {
         return update;
     }
 
+    //3.释放资源
     public static boolean CloseConnection(Connection con, PreparedStatement pstt, ResultSet rst) {
         boolean isFlag = true;
         if (con != null) {

@@ -14,6 +14,7 @@ import java.sql.Connection;
  * @apiNote
  */
 public class UserServiceImpl implements UserService{
+    //获取DAO里面的操纵对象,为后面调用Login方法做准备
     private UserDao userDao;
     public UserServiceImpl(){
         userDao = new UserDaoImpl();
@@ -26,11 +27,13 @@ public class UserServiceImpl implements UserService{
         Connection con = null;
         User user = null;
         try {
+            //获取连接，确定要登录对象
             con = BaseDao.getConnection();
             user = userDao.getLoginUser(con,userCode);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
+            //释放资源
             BaseDao.CloseConnection(con,null,null);
         }
         return user;

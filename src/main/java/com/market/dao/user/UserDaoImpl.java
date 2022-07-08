@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao{
 
             result = BaseDao.execute(con, pst, result, sql, params);
             if (result.next()){
-                //用户信息关联数据库
+                //为实体类User里面的属性和SQL进行结合
                 user = new User();
                 user.setId(result.getLong("id"));
                 user.setUsercode(result.getString("userCode"));

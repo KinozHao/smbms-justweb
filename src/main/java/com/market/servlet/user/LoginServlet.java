@@ -18,17 +18,20 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //获取前端用户名和密码
+        //1.获取前端用户名和密码
         String userCode = req.getParameter("userCode");
         String userPassword = req.getParameter("userPassword");
 
-        //和数据库中密码校对，调用业务层
-        UserServiceImpl use = new UserServiceImpl();
-        User user = use.Login(userCode, userPassword);
+        //2.调用业务层方法,和数据库校验密码
+        UserServiceImpl usil = new UserServiceImpl();
+        User user = usil.Login(userCode, userPassword);
         if (user != null){
+            //若非空登录成功,携带一组session存放在服务器中
             req.getSession().setAttribute(Constants.USER_SESSION,user);
+            //跳转到后台页面
             resp.sendRedirect("jsp/frame.jsp");
         }else {
+            //在前端提示信息,请求转发到当前页面
             req.setAttribute("error","用户名或密码不正确!");
             req.getRequestDispatcher("login.jsp").forward(req,resp);
         }
