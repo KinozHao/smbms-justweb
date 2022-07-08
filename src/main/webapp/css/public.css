@@ -3,7 +3,7 @@
     padding: 0;
 }
 body{
-    font-size: 13px;
+    font-size: 12px;
     background: #4287c2;
 }
 .clear:after{
@@ -18,7 +18,7 @@ li{
     list-style: none;
 }
 
-
+/*公共样式，头部*/
 .publicHeader{
     height: 48px;
     line-height: 48px;
@@ -66,7 +66,7 @@ li{
     font-weight: bold;
     background: linear-gradient(to bottom,#70b21c,#5c9613,#47740e,#3b6209,#2b4906);
 }
-
+/*时间*/
 .publicTime{
     height: 28px;
     line-height: 28px;
@@ -86,20 +86,20 @@ li{
     color: #626367;
 }
 
-
+/*公共部分主体内容*/
 .publicMian{
     border-top: 1px solid #c2ccd5;
-    display: flex;  
+    display: flex;  /*变为弹性盒模型*/
     display: -webkit-flex;
     background: #fff;
 }
-
+/*左边*/
 .left{
     width: 168px;
     background: url("../images/leftBg.png") 0 0 repeat-y;
     margin-right: 10px;
     /*height: 520px;*/
-    min-height: 730px;
+    min-height: 520px;
 
 }
 .leftH2{
@@ -167,11 +167,11 @@ li{
 }
 
 
-
+/*右边*/
 .right{
     width: 85%;
 }
-
+/*右边所在位置栏*/
 .location{
     height: 30px;
     line-height: 30px;
@@ -190,7 +190,7 @@ li{
     color: #2179a9;
     font-weight:  bold;
 }
-
+/*搜索信息栏*/
 .search{
     height:50px;
     line-height:50px;
@@ -243,12 +243,14 @@ li{
 }
 .search select{
     margin: 10px;
+    width: 100px;
     height: 30px;
     border-radius: 4px;
     border: 1px solid #0c89de;
     outline: none;
 }
 
+/*底部*/
 .footer{
     width: 100%;
     line-height: 40px;
@@ -271,12 +273,3 @@ li{
     outline: none;
     background-color: #5d8410;
 }
-
-
-
-
-
-
-
-
-

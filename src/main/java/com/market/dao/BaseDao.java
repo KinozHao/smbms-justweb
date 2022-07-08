@@ -53,7 +53,7 @@ public class BaseDao {
         return update;
     }
 
-    public static boolean CloseConnection(Connection con, Statement sta, ResultSet rst) {
+    public static boolean CloseConnection(Connection con, PreparedStatement pstt, ResultSet rst) {
         boolean isFlag = true;
         if (con != null) {
             try {
@@ -65,11 +65,11 @@ public class BaseDao {
                 isFlag = false;
             }
         }
-        if (sta != null) {
+        if (pstt != null) {
             try {
-                sta.close();
+                pstt.close();
                 //通知GC回收资源
-                sta = null;
+                pstt = null;
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
                 isFlag = false;

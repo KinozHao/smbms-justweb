@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-/*鐧诲綍椤甸潰*/
+/*登录页面*/
 .login_bg {
     background: url("../images/loginBg.jpg") 0 0 repeat-x;
 }
@@ -36,7 +36,7 @@
     position: relative;
 }
 
-/*杈撳叆妗嗛噷榛樿杈撳叆瀛椾綋*/
+/*输入框里默认输入字体*/
 ::-webkit-input-placeholder {
     color: rgb(190, 188, 188);
     /*font-style: italic;*/
@@ -86,7 +86,7 @@ input {
 
 }
 
-/*杈撳叆妗嗗緱鍒扮劍鐐圭殑鏁堟灉*/
+/*输入框得到焦点的效果*/
 .inputbox input:active, .providerAdd input:focus,
 .inputbox input:focus {
     border: 1px solid rgba(91, 90, 90, 0.7);
@@ -100,8 +100,8 @@ input {
     margin-left: 70px;
 }
 
-/*/!*鐧诲綍椤电櫥褰曞拰閲嶇疆鎸夐挳*!/.providerView a鏄緵搴斿晢绠＄悊椤甸潰涓嬩俊鎭煡鐪嬩篃寰楄繑鍥炴寜閽殑鏍峰紡*/
-input[type='button'], input[type='reset'], .providerView a {
+/*/!*登录页登录和重置按钮*!/.providerView a是供应商管理页面下信息查看也得返回按钮的样式*/
+input[type='submit'], input[type='reset'], .providerView a {
     width: 30%;
     cursor: pointer;
     background: #54a4d7;
@@ -141,7 +141,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
 }
 
-/*娆㈣繋鐧诲綍椤�*/
+/*欢迎登录页*/
 .wColck {
     width: 88px;
     height: 108px;
@@ -166,7 +166,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     color: #5a656c;
 }
 
-/*渚涘簲鍟嗙鐞嗛〉闈�*/
+/*供应商管理页面*/
 .providerTable {
     width: 100%;
     border: 1px solid #ccc;
@@ -202,7 +202,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
 
 }
 
-/*渚涘簲鍟嗙鐞嗛〉闈�-->涓嬮潰鐨勪俊鎭煡鐪嬮〉闈�*/
+/*供应商管理页面-->下面的信息查看页面*/
 .providerView {
     margin: 20px 0;
     font-size: 18px;
@@ -227,7 +227,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     top: 60px;
 }
 
-/*渚涘簲鍟嗙鐞嗛〉闈�-->渚涘簲鍟嗘坊鍔犻〉闈�*/
+/*供应商管理页面-->供应商添加页面*/
 .providerAdd {
     border: 1px solid #9ac70f;
     padding: 20px;
@@ -273,7 +273,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     color: #faca0d;
 }
 
-/*楠岃瘉閿欒*/
+/*验证错误*/
 .providerAdd .error span {
     color: red;
 }
@@ -282,7 +282,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     border: 1px solid red;
 }
 
-/*楠岃瘉鎴愬姛*/
+/*验证成功*/
 .providerAdd .ok span {
     color: green;
 }
@@ -295,7 +295,6 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     margin-left: 240px;
     padding-top: 20px;
 }
-
 
 .providerAddBtn a ,
 .providerAddBtn input[type='submit'],
@@ -334,9 +333,9 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     box-shadow: none;
 }
 
-/*鐐瑰嚮鍒犻櫎鎸夐挳鍚庡脊鍑虹殑灞�*/
+/*点击删除按钮后弹出的层*/
 .zhezhao {
-    display: none;          /* 淇敼杩欓噷鍙互璁╅伄缃╁眰娑堝け*/
+    display: none;          /* 修改这里可以让遮罩层消失*/
     position: absolute;
     top: 0;
     left: 0;
@@ -348,7 +347,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     overflow: hidden;
 }
 .remove{
-   display: none;       /* 淇敼杩欓噷鍙互璁╁垹闄ゆ娑堝け*/
+   display: none;       /* 修改这里可以让删除框消失*/
     width: 400px;
     height: 190px;
     position: absolute;
@@ -390,7 +389,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
 
 }
 
-/*椤电爜*/
+/*页码*/
 .page-bar
 {
 	position:relative;

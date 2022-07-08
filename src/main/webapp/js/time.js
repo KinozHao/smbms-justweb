@@ -3,6 +3,7 @@ function fn(){
     var time = new Date();
     var str= "";
     var div = document.getElementById("time");
+//    console.log(time);
     var year = time.getFullYear();
     var mon = time.getMonth()+1;
     var day = time.getDate();
@@ -31,5 +32,12 @@ function fn(){
 }
 fn();
 setInterval(fn,1000);
-
+function totwo(n){
+    if(n<=9){
+        return n = "0"+n;
+    }
+    else{
+        return n =""+n;
+    }
+}
 
