@@ -15,6 +15,7 @@ import java.sql.SQLException;
  */
 public class UserDaoImpl implements UserDao{
     @Override
+    //得到要登陆的用户
     public User getLoginUser(Connection con, String userCode) throws SQLException {
         PreparedStatement pst = null;
         ResultSet result = null;
@@ -44,10 +45,27 @@ public class UserDaoImpl implements UserDao{
                 user.setModifydate(result.getDate("modifyDate"));
             }
 
-            //连接暂时不关闭
+            //连接会存在业务，暂时不关闭
             BaseDao.CloseConnection(null,pst,result);
         }
         //若以上执行成功返回user信息
         return user;
     }
+
+    @Override
+    //修改当前用户密码
+    public int updatePwd(Connection con, long id, String password) throws SQLException {
+        PreparedStatement pstm = null;
+        int execute = 0;
+        if (con != null){
+            String sql = "update smbms_user set userPassword=? where id=?";
+            Object[] param = {password,id};
+            execute = BaseDao.execute(con, pstm, sql, param);
+            BaseDao.CloseConnection(null,pstm,null);
+        }
+
+        return execute;
+    }
+
+
 }

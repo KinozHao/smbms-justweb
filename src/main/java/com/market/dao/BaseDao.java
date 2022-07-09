@@ -10,10 +10,10 @@ import java.util.Properties;
  * @apiNote 数据库操纵的公共类
  */
 public class BaseDao {
-    private static String driver;
-    private static String url;
-    private static String username;
-    private static String password;
+    private static final String driver;
+    private static final String url;
+    private static final String username;
+    private static final String password;
     static {
         Properties properties = new Properties();
         InputStream ins = BaseDao.class.getClassLoader().getResourceAsStream("db.properties");
@@ -34,36 +34,35 @@ public class BaseDao {
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url,username,password);
-        } catch (Exception throwables) {
-            throwables.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return con;
     }
 
     //2.DQL
+    //params为参数对象，因为我们不确定会得多少个，所以对他进行遍历
     public static ResultSet execute(Connection con,PreparedStatement pst, ResultSet result,String sql,Object [] params) throws SQLException{
         pst = con.prepareStatement(sql);
         for (int i = 0; i < params.length; i++) {
             //setObject 占位符从1开始，数组是从0开始的
             pst.setObject(i+1,params[i]);
         }
-        result = pst.executeQuery();
-        return result;
+        return pst.executeQuery();
     }
 
     //2.DDL
-    public static int execute(Connection con,String sql,Object [] params, PreparedStatement pst) throws SQLException{
+    public static int execute(Connection con, PreparedStatement pst,String sql,Object [] params) throws SQLException{
         pst = con.prepareStatement(sql);
         for (int i = 0; i < params.length; i++) {
             //setObject 占位符从1开始，数组是从0开始的
             pst.setObject(i+1,params[i]);
         }
-        int update = pst.executeUpdate();
-        return update;
+        return pst.executeUpdate();
     }
 
     //3.释放资源
-    public static boolean CloseConnection(Connection con, PreparedStatement pstt, ResultSet rst) {
+    public static boolean CloseConnection(Connection con, PreparedStatement pst, ResultSet rst) {
         boolean isFlag = true;
         if (con != null) {
             try {
@@ -75,11 +74,11 @@ public class BaseDao {
                 isFlag = false;
             }
         }
-        if (pstt != null) {
+        if (pst != null) {
             try {
-                pstt.close();
+                pst.close();
                 //通知GC回收资源
-                pstt = null;
+                pst = null;
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
                 isFlag = false;

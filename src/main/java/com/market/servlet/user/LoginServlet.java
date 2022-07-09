@@ -24,9 +24,10 @@ public class LoginServlet extends HttpServlet {
 
         //2.调用业务层方法,和数据库校验密码
         UserServiceImpl usil = new UserServiceImpl();
+        //获取到登录的用户
         User user = usil.Login(userCode, userPassword);
         if (user != null){
-            //若非空登录成功,携带一组session存放在服务器中
+            //将用户的信息放在session中
             req.getSession().setAttribute(Constants.USER_SESSION,user);
             //跳转到后台页面
             resp.sendRedirect("jsp/frame.jsp");

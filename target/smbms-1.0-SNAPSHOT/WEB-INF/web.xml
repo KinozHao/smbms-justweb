@@ -22,6 +22,14 @@
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>userServlet</servlet-name>
+        <servlet-class>com.market.servlet.user.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userServlet</servlet-name>
+        <url-pattern>/jsp/user.do</url-pattern>
+    </servlet-mapping>
 
     <!--乱码过滤器-->
     <filter>

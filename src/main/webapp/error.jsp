@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Error page</title>
 </head>
 <style type="text/css">
 * {
@@ -13,8 +13,7 @@
 }
 
 body {
-	background: url("${pageContext.request.contextPath}/statics/images/pic-error.png") 0 0 no-repeat;
-	 background-position:55% -70%;
+	background: url("${pageContext.request.contextPath}/statics/images/pic-error.png") no-repeat 55% -70%;
 }
 /* body{
 	background-color: #ccc;
@@ -24,6 +23,7 @@ body {
 	<!-- 使用输出全局异常信息-->
 	<%-- <h1>全局异常信息：${exception.message}</h1> --%>
 	<%-- 用来使用局部输出 <h1>${e}</h1> --%>
-	<a href="${pageContext.request.contextPath }/login.jsp">返回</a>
+	<h1>Page information has expired:</h1>
+	<h1><a href="${pageContext.request.contextPath }/login.jsp">Back to Home</a></h1>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>系统登录-超市订单管理系统</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/statics/images/favicon.ico">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/style.css">
     <script>
 
