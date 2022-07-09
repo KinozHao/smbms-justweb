@@ -54,4 +54,9 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
+
+    <!--session自动过期时间-->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
 </web-app>

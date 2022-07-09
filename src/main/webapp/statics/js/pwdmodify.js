@@ -69,9 +69,8 @@ $(function(){
 		oldpassword.blur();
 		newpassword.blur();
 		rnewpassword.blur();
-		/*oldpassword.attr("validateStatus") == "true"
-			&& */
-		if(newpassword.attr("validateStatus") == "true"
+		if(oldpassword.attr("validateStatus") == "true"
+			&&newpassword.attr("validateStatus") == "true"
 			&& rnewpassword.attr("validateStatus") == "true"){
 			if(confirm("Are you sure you want to change your password?")){
 				$("#userForm").submit();

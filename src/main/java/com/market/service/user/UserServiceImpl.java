@@ -12,7 +12,7 @@ import java.sql.SQLException;
 /**
  * @author kinoz
  * @Date 2022/7/8 - 15:35
- * @apiNote
+ * @apiNote 业务层引入DAO层并调用
  */
 public class UserServiceImpl implements UserService{
     //获取DAO里面的操纵对象,为后面调用Login方法做准备
@@ -21,8 +21,6 @@ public class UserServiceImpl implements UserService{
         userDao = new UserDaoImpl();
     }
 
-
-    //业务层引入DAO层并调用
     @Override
     //用户登录
     public User Login(String userCode, String password) {
@@ -60,9 +58,16 @@ public class UserServiceImpl implements UserService{
         }
         return flag;
     }
+    /*@Test
+    public void test2(){
+        //测试是否可以成功修改密码
+        UserServiceImpl use = new UserServiceImpl();
+        boolean b = use.updatePwd(2, "111119");
+        System.out.println("用户密码修改:"+b);
+    }*/
 
     /*@Test
-    public void test(){
+    public void logintest(){
         UserServiceImpl us = new UserServiceImpl();
         User admin = us.Login("admin", "123");
         System.out.println(admin.getUserpassword());

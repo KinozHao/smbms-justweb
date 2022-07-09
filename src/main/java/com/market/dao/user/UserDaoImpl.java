@@ -63,7 +63,6 @@ public class UserDaoImpl implements UserDao{
             execute = BaseDao.execute(con, pstm, sql, param);
             BaseDao.CloseConnection(null,pstm,null);
         }
-
         return execute;
     }
 

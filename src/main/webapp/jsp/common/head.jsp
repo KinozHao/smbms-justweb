@@ -11,7 +11,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>超市订单管理系统</title>
+    <title>控制台-超市订单管理系统</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/statics/images/favicon.png">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/style.css" />
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/public.css" />
 </head>
@@ -27,7 +28,7 @@
 <!--时间-->
 <section class="publicTime">
     <span id="time">2015年1月1日 11:11  星期一</span>
-    <a href="https://www.google.cn/chrome/index.html">温馨提示：为了能正常浏览，请使用高版本浏览器！（IE10+）</a>
+    <a href="https://www.google.cn/chrome/index.html">温馨提示：使用Chrome浏览器，访问速度大幅度提高！（点击跳转）</a>
 </section>
 <!--主体内容-->
 <section class="publicMian ">
