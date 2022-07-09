@@ -14,7 +14,16 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/login.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>com.market.servlet.user.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout.do</url-pattern>
+    </servlet-mapping>
 
+    <!--乱码过滤器-->
     <filter>
         <filter-name>charFilter</filter-name>
         <filter-class>com.market.filter.CharsetFilter</filter-class>
@@ -23,7 +32,17 @@
         <filter-name>charFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
+    <!--用户登录过滤器-->
+    <filter>
+        <filter-name>sysFilter</filter-name>
+        <filter-class>com.market.filter.SysFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sysFilter</filter-name>
+        <url-pattern>/jsp/*</url-pattern>
+    </filter-mapping>
+
+    <!--欢迎页面-->
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
