@@ -16,4 +16,7 @@ public interface UserService {
 
     //根据id修改用户密码
     boolean updatePwd(long id, String password);
+
+    //概据条件查询用户表记录数
+    int getUserCount(String QueryUserName,int QueryUserRole);
 }

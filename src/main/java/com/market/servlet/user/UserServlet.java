@@ -1,6 +1,5 @@
 package com.market.servlet.user;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.market.entity.User;
 import com.market.service.user.UserServiceImpl;
@@ -55,7 +54,7 @@ public class UserServlet extends HttpServlet {
         req.getRequestDispatcher("pwdmodify.jsp").forward(req,resp);
     }
 
-    //与旧密码做校验
+    //使用ajax与旧密码做校验
     private void pwdModify(HttpServletRequest req, HttpServletResponse resp){
         //从session中获取id
         Object obj = req.getSession().getAttribute(Constants.USER_SESSION);

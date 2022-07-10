@@ -3,10 +3,14 @@ package com.market.dao.user;
 import com.market.dao.BaseDao;
 import com.market.entity.User;
 
+import javax.swing.plaf.basic.BasicOptionPaneUI;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author kinoz
@@ -59,11 +63,55 @@ public class UserDaoImpl implements UserDao{
         int execute = 0;
         if (con != null){
             String sql = "update smbms_user set userPassword=? where id=?";
-            Object[] param = {password,id};
-            execute = BaseDao.execute(con, pstm, sql, param);
+            ArrayList<Object> param = new ArrayList<>();
+            param.add(password);
+            param.add(id);
+            Object[] change_param = param.toArray();
+            execute = BaseDao.execute(con, pstm, sql, change_param);
             BaseDao.CloseConnection(null,pstm,null);
         }
         return execute;
+    }
+
+    //根据用户名或角色查询用户总数(sql较难 多表查询)
+    @Override
+    public int getUserCount(Connection con, String userName, int userRole) throws SQLException {
+        ResultSet result = null;
+        PreparedStatement state = null;
+        //最终需要返回的值
+        int count = 0;
+
+        if (con != null){
+            StringBuilder sql = new StringBuilder();
+            //主查询语句
+            sql.append("select count(1) as sql_count from smbms_user u,smbms_role r where u.userRole = r.id");
+            //用于存放sql
+            List<Object> param = new ArrayList<>();
+            //userName不为空时对sql做拼接模糊查询
+            if (userName != null){
+                sql.append(" and u.userName like ?");
+                param.add("%"+userName+"%");
+            }
+            //对应级别的人数
+            if (userRole > 0){
+                sql.append(" and u.userRole = ?");
+                param.add(userRole);
+            }
+            //转换为Base公共sql类需要的类型
+            Object[] change_param = param.toArray();
+            String change_sql = sql.toString();
+            //Test
+            System.out.println("sql -->"+sql.toString());
+
+            //调用sql公共类返回值供service层调用
+            result = BaseDao.execute(con,state,result,change_sql,change_param);
+            if (result.next()){
+                count = result.getInt("sql_count");//""里面的sql_count为我们sql语句中as的别名
+            }
+            //释放流资源
+            BaseDao.CloseConnection(null,state,result);
+        }
+        return count;
     }
 
 

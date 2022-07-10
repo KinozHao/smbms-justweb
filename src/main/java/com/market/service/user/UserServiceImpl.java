@@ -58,18 +58,37 @@ public class UserServiceImpl implements UserService{
         }
         return flag;
     }
+
+    @Override
+    public int getUserCount(String QueryUserName, int QueryUserRole) {
+        Connection con = null;
+        int count = 0;
+        try {
+            con = BaseDao.getConnection();
+            count = userDao.getUserCount(con, QueryUserName, QueryUserRole);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            BaseDao.CloseConnection(con,null,null);
+        }
+        return count;
+    }
     /*@Test
-    public void test2(){
+    public void Test1(){
         //测试是否可以成功修改密码
         UserServiceImpl use = new UserServiceImpl();
         boolean b = use.updatePwd(2, "111119");
         System.out.println("用户密码修改:"+b);
-    }*/
-
-    /*@Test
-    public void logintest(){
+    }
+    @Test
+    public void Test2(){
         UserServiceImpl us = new UserServiceImpl();
         User admin = us.Login("admin", "123");
         System.out.println(admin.getUserpassword());
+    }
+    @Test
+    public void Test3(){
+        UserServiceImpl use = new UserServiceImpl();
+        System.out.println(use.getUserCount(null, 3));
     }*/
 }
