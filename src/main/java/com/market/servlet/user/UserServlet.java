@@ -28,9 +28,12 @@ public class UserServlet extends HttpServlet {
             updatePwd(req, resp);
         }else if (method.equals("pwdmodify") && method !=null){
             pwdModify(req,resp);
+        }else if (method.equals("query") && method != null){
+            query(req,resp);
         }
 
     }
+
 
     //更新密码
     private void updatePwd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -89,6 +92,11 @@ public class UserServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    //难点
+    private void query(HttpServletRequest req, HttpServletResponse resp) {
 
     }
 

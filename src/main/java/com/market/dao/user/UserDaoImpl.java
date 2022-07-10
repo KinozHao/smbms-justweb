@@ -1,15 +1,15 @@
 package com.market.dao.user;
 
 import com.market.dao.BaseDao;
+import com.market.entity.Role;
 import com.market.entity.User;
+import org.apache.taglibs.standard.lang.jstl.GreaterThanOperator;
 
-import javax.swing.plaf.basic.BasicOptionPaneUI;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -18,8 +18,8 @@ import java.util.List;
  * @apiNote
  */
 public class UserDaoImpl implements UserDao{
-    @Override
     //得到要登陆的用户
+    @Override
     public User getLoginUser(Connection con, String userCode) throws SQLException {
         PreparedStatement pst = null;
         ResultSet result = null;
@@ -56,8 +56,8 @@ public class UserDaoImpl implements UserDao{
         return user;
     }
 
-    @Override
     //修改当前用户密码
+    @Override
     public int updatePwd(Connection con, long id, String password) throws SQLException {
         PreparedStatement pstm = null;
         int execute = 0;
@@ -112,6 +112,58 @@ public class UserDaoImpl implements UserDao{
             BaseDao.CloseConnection(null,state,result);
         }
         return count;
+    }
+
+    //条件查询-用户列表
+    @Override
+    public List<User> getUserList(Connection con, String userName, int userRole, int currentPageNo, int pageSize) throws SQLException {
+        ResultSet result = null;
+        PreparedStatement state = null;
+        List<User> userList = new ArrayList<>();
+        if (con != null){
+            StringBuilder sql = new StringBuilder();
+            sql.append("select u.*,r.roleName as roleName from smbms_user u,smbms_role r where u.userRole = r.id");
+            ArrayList<Object> param = new ArrayList<>();
+            if (userName!=null){
+                sql.append(" and u.useName like ?");
+                param.add("%"+userName+"%");
+            }
+            if (userRole > 0){
+                sql.append(" and u.userRole = ?");
+                param.add(userRole);
+            }
+
+            //数据库分页操作
+            //在数据库中，分页使用 limit startIndex pageSize
+            //当前页  （当前页-1）*页面大小
+            //0,5    1   0    012345
+            //6,5    2   5    26789
+            //11,5   3   10
+            sql.append(" order by creationDate DESC limit ?,?");
+            currentPageNo = (currentPageNo-1)*pageSize;
+            param.add(currentPageNo);
+            param.add(pageSize);
+
+            Object[] change_param = param.toArray();
+            String change_sql = sql.toString();
+            System.out.println("sql --->"+change_sql);
+
+            result = BaseDao.execute(con,state,result,change_sql,change_param);
+            while (result.next()){
+                User user = new User();
+                user.setId(result.getLong("id"));
+                user.setUsercode(result.getString("userCode"));
+                user.setUserName(result.getString("userName"));
+                user.setGender(result.getInt("gender"));
+                user.setBirthday(result.getDate("birthday"));
+                user.setPhone(result.getString("phone"));
+                user.setUserrole(result.getInt("userRole"));
+                user.setRoleName(result.getString("roleName"));
+                userList.add(user);
+            }
+            BaseDao.CloseConnection(null,state,result);
+        }
+        return userList;
     }
 
 

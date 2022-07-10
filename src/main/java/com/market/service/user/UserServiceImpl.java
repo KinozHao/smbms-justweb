@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author kinoz
@@ -72,6 +73,26 @@ public class UserServiceImpl implements UserService{
             BaseDao.CloseConnection(con,null,null);
         }
         return count;
+    }
+
+    @Override
+    public List<User> getUserList(String userName, int userRole, int currentPageNo, int pageSize) {
+        Connection con = null;
+        List<User> userList = null;
+        try {
+            con = BaseDao.getConnection();
+            userList = userDao.getUserList(con, userName, userRole, currentPageNo, pageSize);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            BaseDao.CloseConnection(con,null,null);
+        }
+        return userList;
+    }
+    @Test
+    public void Test4(){
+        UserServiceImpl us = new UserServiceImpl();
+        System.out.println(us.getUserList(null, 3, 2, 3));
     }
     /*@Test
     public void Test1(){

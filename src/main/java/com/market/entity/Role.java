@@ -7,7 +7,7 @@ public class Role {
 
     private String rolecode;
 
-    private String rolename;
+    private String roleName;
 
     private Long createdby;
 
@@ -33,12 +33,12 @@ public class Role {
         this.rolecode = rolecode == null ? null : rolecode.trim();
     }
 
-    public String getRolename() {
-        return rolename;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRolename(String rolename) {
-        this.rolename = rolename == null ? null : rolename.trim();
+    public void setRoleName(String roleName) {
+        this.roleName = roleName == null ? null : roleName.trim();
     }
 
     public Long getCreatedby() {
@@ -71,5 +71,10 @@ public class Role {
 
     public void setModifydate(Date modifydate) {
         this.modifydate = modifydate;
+    }
+
+    @Override
+    public String toString() {
+        return roleName;
     }
 }

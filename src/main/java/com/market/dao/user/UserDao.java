@@ -1,9 +1,11 @@
 package com.market.dao.user;
 
+import com.market.entity.Role;
 import com.market.entity.User;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author kinoz
@@ -17,6 +19,10 @@ public interface UserDao {
     //修改用户密码
     int updatePwd(Connection con,long id,String password) throws SQLException;
 
-    //条件查询-用户表的记录数
+    //条件查询-用户总数
     int getUserCount(Connection con,String userName,int userRole)throws SQLException;
+
+    //条件查询-用户列表
+    List<User> getUserList(Connection con,String userName,int userRole,int currentPageNo,int pageSize)throws SQLException;
+
 }

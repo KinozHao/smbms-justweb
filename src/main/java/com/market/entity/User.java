@@ -32,6 +32,16 @@ public class User {
 
     private Date modifydate;
 
+    private String roleName;
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
     public Long getId() {
         return id;
     }
