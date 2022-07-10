@@ -1,9 +1,12 @@
 package com.market.servlet.user;
 
 import com.alibaba.fastjson.JSONArray;
+import com.market.entity.Role;
 import com.market.entity.User;
+import com.market.service.role.RoleServiceImpl;
 import com.market.service.user.UserServiceImpl;
 import com.market.util.Constants;
+import com.market.util.PageSupport;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -97,6 +101,71 @@ public class UserServlet extends HttpServlet {
 
     //难点
     private void query(HttpServletRequest req, HttpServletResponse resp) {
+        //1.从前端获取数据
+        String queryUserName = req.getParameter("queryname");
+        String temp = req.getParameter("queryUserRole");
+        String pageIndex = req.getParameter("pageIndex");
+        int queryUserRole = 0;
+        List<User> userList = null; //获取用户列表做前端展示
+
+        //2.判断请求是否需要处理
+        //获取用列表
+        UserServiceImpl user = new UserServiceImpl();
+        int pageSize =5;
+        int currentPageNo = 1;
+        if (queryUserName == null){
+            queryUserName="";
+        }
+        if (temp != null && !temp.equals("")){
+             queryUserRole = Integer.parseInt(temp);
+        }
+
+        if (pageIndex!= null){
+           currentPageNo =  Integer.parseInt(pageIndex);
+        }
+
+        //3.为了实现分页,需要计算出当前页面和总页面,页面大小
+        //获取用户总数 (分页:上一页 下一页情况)
+        int totalCount = user.getUserCount(queryUserName,queryUserRole);
+        //总页数支持
+        PageSupport pageSupport = new PageSupport();
+        pageSupport.setCurrentPageNo(currentPageNo);
+        pageSupport.setPageSize(pageSize);
+        pageSupport.setTotalCount(totalCount);
+
+        //总共有几页
+        int totalPageCount = pageSupport.getTotalPageCount();   //使用狂神工具类
+        //int totalPageCount = totalCount/pageSize +1;   //手动计算
+
+        //4.控制首页和尾页(相当于业务需求)
+        //页面小于1就显示第一页的东西
+        if (currentPageNo < 1) {
+            currentPageNo = 1;
+        //当前页面大于了最后一页就让它等于最后一页
+        }else if (currentPageNo>totalCount){
+            currentPageNo = totalCount;
+        }
+
+        //5.获取用户列表展示到前端
+        userList = user.getUserList(queryUserName, queryUserRole, currentPageNo, pageSize);
+        req.setAttribute("userList",userList);
+        RoleServiceImpl roleService = new RoleServiceImpl();
+        List<Role> roleList = roleService.getRoleList();
+        //后台数据与前端的value对应
+        req.setAttribute("roleList",roleList);
+        req.setAttribute("totalCount",totalCount);
+        req.setAttribute("currentPageNo",currentPageNo);
+        req.setAttribute("totalPageCount",totalPageCount);
+        req.setAttribute("queryUserName",queryUserName);
+        req.setAttribute("queryUserRole",queryUserRole);
+
+        try {
+            req.getRequestDispatcher("userlist.jsp").forward(req,resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

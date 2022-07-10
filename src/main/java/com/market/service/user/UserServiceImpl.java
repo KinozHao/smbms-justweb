@@ -89,11 +89,7 @@ public class UserServiceImpl implements UserService{
         }
         return userList;
     }
-    @Test
-    public void Test4(){
-        UserServiceImpl us = new UserServiceImpl();
-        System.out.println(us.getUserList(null, 3, 2, 3));
-    }
+
     /*@Test
     public void Test1(){
         //测试是否可以成功修改密码
@@ -111,5 +107,11 @@ public class UserServiceImpl implements UserService{
     public void Test3(){
         UserServiceImpl use = new UserServiceImpl();
         System.out.println(use.getUserCount(null, 3));
+    }*/
+
+      /*@Test
+    public void Test4(){
+        UserServiceImpl us = new UserServiceImpl();
+        System.out.println(us.getUserList(null, 3, 2, 3));
     }*/
 }

@@ -1,9 +1,7 @@
 package com.market.dao.user;
 
 import com.market.dao.BaseDao;
-import com.market.entity.Role;
 import com.market.entity.User;
-import org.apache.taglibs.standard.lang.jstl.GreaterThanOperator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,7 +33,7 @@ public class UserDaoImpl implements UserDao{
                 //为实体类User里面的属性和SQL进行结合
                 user = new User();
                 user.setId(result.getLong("id"));
-                user.setUsercode(result.getString("userCode"));
+                user.setUserCode(result.getString("userCode"));
                 user.setUserName(result.getString("userName"));
                 user.setUserpassword(result.getString("userPassword"));
                 user.setGender(result.getInt("gender"));
@@ -73,7 +71,8 @@ public class UserDaoImpl implements UserDao{
         return execute;
     }
 
-    //根据用户名或角色查询用户总数(sql较难 多表查询)
+    //动态sql 较难 多表查询
+    //根据用户名或角色查询用户总数
     @Override
     public int getUserCount(Connection con, String userName, int userRole) throws SQLException {
         ResultSet result = null;
@@ -125,7 +124,7 @@ public class UserDaoImpl implements UserDao{
             sql.append("select u.*,r.roleName as roleName from smbms_user u,smbms_role r where u.userRole = r.id");
             ArrayList<Object> param = new ArrayList<>();
             if (userName!=null){
-                sql.append(" and u.useName like ?");
+                sql.append(" and u.userName like ?");
                 param.add("%"+userName+"%");
             }
             if (userRole > 0){
@@ -152,13 +151,13 @@ public class UserDaoImpl implements UserDao{
             while (result.next()){
                 User user = new User();
                 user.setId(result.getLong("id"));
-                user.setUsercode(result.getString("userCode"));
+                user.setUserCode(result.getString("userCode"));
                 user.setUserName(result.getString("userName"));
                 user.setGender(result.getInt("gender"));
                 user.setBirthday(result.getDate("birthday"));
                 user.setPhone(result.getString("phone"));
                 user.setUserrole(result.getInt("userRole"));
-                user.setRoleName(result.getString("roleName"));
+                user.setUserRoleName(result.getString("roleName"));
                 userList.add(user);
             }
             BaseDao.CloseConnection(null,state,result);

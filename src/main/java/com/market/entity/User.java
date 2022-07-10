@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class User {
     private Long id;
 
-    private String usercode;
+    private String userCode;
 
     private String userName;
 
@@ -32,14 +32,23 @@ public class User {
 
     private Date modifydate;
 
-    private String roleName;
+    private String userRoleName;
+    private Integer age;
 
-    public String getRoleName() {
-        return roleName;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getUserRoleName() {
+        return userRoleName;
+    }
+
+    public void setUserRoleName(String userRoleName) {
+        this.userRoleName = userRoleName;
     }
 
     public Long getId() {
@@ -50,12 +59,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsercode() {
-        return usercode;
+    public String getUserCode() {
+        return userCode;
     }
 
-    public void setUsercode(String usercode) {
-        this.usercode = usercode == null ? null : usercode.trim();
+    public void setUserCode(String userCode) {
+        this.userCode = userCode == null ? null : userCode.trim();
     }
 
     public String getUserName() {
@@ -148,7 +157,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", usercode=" + usercode + ", username="
+		return "User [id=" + id + ", usercode=" + userCode + ", username="
 				+ userName + ", userpassword=" + userpassword + ", gender="
 				+ gender + ", birthday=" + birthday + ", phone=" + phone
 				+ ", address=" + address + ", userrole=" + userrole

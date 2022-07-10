@@ -45,7 +45,7 @@
             <th width="10%">用户角色</th>
             <th width="30%">操作</th>
         </tr>
-        <c:forEach var="user" items="${userList }" varStatus="status">
+        <c:forEach var="user" items="${userList}" varStatus="status">
             <tr>
                 <td>
                     <span>${user.userCode }</span>
@@ -54,10 +54,10 @@
                     <span>${user.userName }</span>
                 </td>
                 <td>
-							<span>
-								<c:if test="${user.gender==1}">男</c:if>
-								<c:if test="${user.gender==2}">女</c:if>
-							</span>
+                    <span>
+                        <c:if test="${user.gender==1}">男</c:if>
+                        <c:if test="${user.gender==2}">女</c:if>
+                    </span>
                 </td>
                 <td>
                     <span>${user.age}</span>
