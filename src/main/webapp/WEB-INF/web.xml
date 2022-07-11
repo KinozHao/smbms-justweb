@@ -30,6 +30,14 @@
         <servlet-name>userServlet</servlet-name>
         <url-pattern>/jsp/user.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>providerServlet</servlet-name>
+        <servlet-class>com.market.servlet.provider.ProviderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>providerServlet</servlet-name>
+        <url-pattern>/jsp/provider.do</url-pattern>
+    </servlet-mapping>
 
     <!--乱码过滤器-->
     <filter>

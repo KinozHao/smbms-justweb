@@ -54,10 +54,10 @@
                     <span>${user.userName }</span>
                 </td>
                 <td>
-							<span>
-								<c:if test="${user.gender==1}">男</c:if>
-								<c:if test="${user.gender==2}">女</c:if>
-							</span>
+                    <span>
+                        <c:if test="${user.gender==1}">男</c:if>
+                        <c:if test="${user.gender==2}">女</c:if>
+                    </span>
                 </td>
                 <td>
                     <span>${user.age}</span>

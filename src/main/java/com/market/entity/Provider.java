@@ -5,23 +5,23 @@ import java.util.Date;
 public class Provider {
     private Long id;
 
-    private String procode;
+    private String proCode;
 
-    private String proname;
+    private String proName;
 
     private String prodesc;
 
-    private String procontact;
+    private String proContact;
 
-    private String prophone;
+    private String proPhone;
 
-    private String proaddress;
+    private String proAddress;
 
-    private String profax;
+    private String proFax;
 
     private Long createdby;
 
-    private Date creationdate;
+    private Date creationDate;
 
     private Date modifydate;
 
@@ -35,20 +35,20 @@ public class Provider {
         this.id = id;
     }
 
-    public String getProcode() {
-        return procode;
+    public String getProCode() {
+        return proCode;
     }
 
-    public void setProcode(String procode) {
-        this.procode = procode == null ? null : procode.trim();
+    public void setProCode(String proCode) {
+        this.proCode = proCode == null ? null : proCode.trim();
     }
 
-    public String getProname() {
-        return proname;
+    public String getProName() {
+        return proName;
     }
 
-    public void setProname(String proname) {
-        this.proname = proname == null ? null : proname.trim();
+    public void setProName(String proName) {
+        this.proName = proName == null ? null : proName.trim();
     }
 
     public String getProdesc() {
@@ -59,36 +59,36 @@ public class Provider {
         this.prodesc = prodesc == null ? null : prodesc.trim();
     }
 
-    public String getProcontact() {
-        return procontact;
+    public String getProContact() {
+        return proContact;
     }
 
-    public void setProcontact(String procontact) {
-        this.procontact = procontact == null ? null : procontact.trim();
+    public void setProContact(String proContact) {
+        this.proContact = proContact == null ? null : proContact.trim();
     }
 
-    public String getProphone() {
-        return prophone;
+    public String getProPhone() {
+        return proPhone;
     }
 
-    public void setProphone(String prophone) {
-        this.prophone = prophone == null ? null : prophone.trim();
+    public void setProPhone(String proPhone) {
+        this.proPhone = proPhone == null ? null : proPhone.trim();
     }
 
-    public String getProaddress() {
-        return proaddress;
+    public String getProAddress() {
+        return proAddress;
     }
 
-    public void setProaddress(String proaddress) {
-        this.proaddress = proaddress == null ? null : proaddress.trim();
+    public void setProAddress(String proAddress) {
+        this.proAddress = proAddress == null ? null : proAddress.trim();
     }
 
-    public String getProfax() {
-        return profax;
+    public String getProFax() {
+        return proFax;
     }
 
-    public void setProfax(String profax) {
-        this.profax = profax == null ? null : profax.trim();
+    public void setProFax(String proFax) {
+        this.proFax = proFax == null ? null : proFax.trim();
     }
 
     public Long getCreatedby() {
@@ -99,12 +99,12 @@ public class Provider {
         this.createdby = createdby;
     }
 
-    public Date getCreationdate() {
-        return creationdate;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    public void setCreationdate(Date creationdate) {
-        this.creationdate = creationdate;
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public Date getModifydate() {
@@ -121,5 +121,10 @@ public class Provider {
 
     public void setModifyby(Long modifyby) {
         this.modifyby = modifyby;
+    }
+
+    @Override
+    public String toString() {
+        return proName +" "+ proCode;
     }
 }
