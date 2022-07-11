@@ -36,19 +36,13 @@ public class ProviderServlet extends HttpServlet {
         if (StringUtils.isNullOrEmpty(queryProCode)){
             queryProCode = "";
         }
-        List<Provider> pList = new ArrayList<>();
-        ProviderServiceImpl pService = new ProviderServiceImpl();
 
-        pList = pService.getProviderList(queryProName, queryProCode);
-        req.setAttribute("providerList",pList);
+        List<Provider> providerList = new ProviderServiceImpl().getProviderList(queryProName, queryProCode);
+
+        req.setAttribute("providerList",providerList);
         req.setAttribute("queryProName",queryProName);
         req.setAttribute("queryProCode",queryProCode);
 
         req.getRequestDispatcher("providerlist.jsp").forward(req,resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
     }
 }

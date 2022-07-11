@@ -38,6 +38,15 @@
         <servlet-name>providerServlet</servlet-name>
         <url-pattern>/jsp/provider.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>BillServlet</servlet-name>
+        <servlet-class>com.market.servlet.bill.BillServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BillServlet</servlet-name>
+        <url-pattern>/jsp/bill.do</url-pattern>
+    </servlet-mapping>
+
 
     <!--乱码过滤器-->
     <filter>

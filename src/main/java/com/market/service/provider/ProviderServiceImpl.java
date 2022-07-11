@@ -3,8 +3,6 @@ package com.market.service.provider;
 import com.market.dao.BaseDao;
 import com.market.dao.provider.ProviderDao;
 import com.market.dao.provider.ProviderDaoImpl;
-import com.market.dao.role.RoleDao;
-import com.market.dao.role.RoleDaoImpl;
 import com.market.entity.Provider;
 import org.junit.Test;
 
@@ -18,7 +16,7 @@ import java.util.List;
  * @apiNote
  */
 public class ProviderServiceImpl implements ProviderService{
-    //获取DAO里面的操纵对象,为后面调用Login方法做准备
+    //获取DAO里面的操纵对象
     private final ProviderDao providerDao;
     public ProviderServiceImpl(){
         providerDao = new ProviderDaoImpl();

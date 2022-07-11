@@ -1,5 +1,6 @@
 package com.market.dao.provider;
 
+import com.market.entity.Bill;
 import com.market.entity.Provider;
 
 import java.sql.Connection;
@@ -13,5 +14,5 @@ import java.util.List;
  */
 public interface ProviderDao {
     //通过供应商名称、编码获取供应商列表-模糊查询-providerList
-    List<Provider> getProviderList(Connection con,String proName,String proCode) throws SQLException;
+    List<Provider> getProviderList(Connection con, String proName, String proCode) throws SQLException;
 }

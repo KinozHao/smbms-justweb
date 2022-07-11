@@ -6,29 +6,39 @@ import java.util.Date;
 public class Bill {
     private Long id;
 
-    private String billcode;
+    private String billCode;
 
-    private String productname;
+    private String productName;
 
-    private String productdesc;
+    private String productDesc;
 
-    private String productunit;
+    private String productUnit;
 
-    private BigDecimal productcount;
+    private BigDecimal productCount;
 
-    private BigDecimal totalprice;
+    private BigDecimal totalPrice;
 
-    private Integer ispayment;
+    private Integer isPayment;
 
-    private Long createdby;
+    private Long createdBy;
 
-    private Date creationdate;
+    private Date creationDate;
 
-    private Long modifyby;
+    private Long modifyBy;
 
-    private Date modifydate;
+    private Date modifyDate;
 
-    private Integer providerid;
+    private Integer providerId;
+
+    private String providerName;
+
+    public String getProviderName() {
+        return providerName;
+    }
+
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
+    }
 
     public Long getId() {
         return id;
@@ -38,99 +48,99 @@ public class Bill {
         this.id = id;
     }
 
-    public String getBillcode() {
-        return billcode;
+    public String getBillCode() {
+        return billCode;
     }
 
-    public void setBillcode(String billcode) {
-        this.billcode = billcode == null ? null : billcode.trim();
+    public void setBillCode(String billCode) {
+        this.billCode = billCode == null ? null : billCode.trim();
     }
 
-    public String getProductname() {
-        return productname;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProductname(String productname) {
-        this.productname = productname == null ? null : productname.trim();
+    public void setProductName(String productName) {
+        this.productName = productName == null ? null : productName.trim();
     }
 
-    public String getProductdesc() {
-        return productdesc;
+    public String getProductDesc() {
+        return productDesc;
     }
 
-    public void setProductdesc(String productdesc) {
-        this.productdesc = productdesc == null ? null : productdesc.trim();
+    public void setProductDesc(String productDesc) {
+        this.productDesc = productDesc == null ? null : productDesc.trim();
     }
 
-    public String getProductunit() {
-        return productunit;
+    public String getProductUnit() {
+        return productUnit;
     }
 
-    public void setProductunit(String productunit) {
-        this.productunit = productunit == null ? null : productunit.trim();
+    public void setProductUnit(String productUnit) {
+        this.productUnit = productUnit == null ? null : productUnit.trim();
     }
 
-    public BigDecimal getProductcount() {
-        return productcount;
+    public BigDecimal getProductCount() {
+        return productCount;
     }
 
-    public void setProductcount(BigDecimal productcount) {
-        this.productcount = productcount;
+    public void setProductCount(BigDecimal productCount) {
+        this.productCount = productCount;
     }
 
-    public BigDecimal getTotalprice() {
-        return totalprice;
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotalprice(BigDecimal totalprice) {
-        this.totalprice = totalprice;
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public Integer getIspayment() {
-        return ispayment;
+    public Integer getIsPayment() {
+        return isPayment;
     }
 
-    public void setIspayment(Integer ispayment) {
-        this.ispayment = ispayment;
+    public void setIsPayment(Integer isPayment) {
+        this.isPayment = isPayment;
     }
 
-    public Long getCreatedby() {
-        return createdby;
+    public Long getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreatedby(Long createdby) {
-        this.createdby = createdby;
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public Date getCreationdate() {
-        return creationdate;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    public void setCreationdate(Date creationdate) {
-        this.creationdate = creationdate;
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
-    public Long getModifyby() {
-        return modifyby;
+    public Long getModifyBy() {
+        return modifyBy;
     }
 
-    public void setModifyby(Long modifyby) {
-        this.modifyby = modifyby;
+    public void setModifyBy(Long modifyBy) {
+        this.modifyBy = modifyBy;
     }
 
-    public Date getModifydate() {
-        return modifydate;
+    public Date getModifyDate() {
+        return modifyDate;
     }
 
-    public void setModifydate(Date modifydate) {
-        this.modifydate = modifydate;
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
     }
 
-    public Integer getProviderid() {
-        return providerid;
+    public Integer getProviderId() {
+        return providerId;
     }
 
-    public void setProviderid(Integer providerid) {
-        this.providerid = providerid;
+    public void setProviderId(Integer providerId) {
+        this.providerId = providerId;
     }
 }

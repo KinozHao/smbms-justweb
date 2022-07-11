@@ -37,6 +37,12 @@ public class UserServiceImpl implements UserService{
             //释放资源
             BaseDao.CloseConnection(con,null,null);
         }
+        //密码校验
+        if (user != null){
+            if (!user.getUserpassword().equals(password)){
+                user = null;
+            }
+        }
         return user;
     }
 
