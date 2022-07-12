@@ -22,9 +22,8 @@ public class LoginServlet extends HttpServlet {
         String userCode = req.getParameter("userCode");
         String userPassword = req.getParameter("userPassword");
 
-        //2.调用业务层方法,和数据库校验密码
+        //2.调用业务层方法,和数据库校验密码,获取到登录的用户
         UserServiceImpl usil = new UserServiceImpl();
-        //获取到登录的用户
         User user = usil.Login(userCode, userPassword);
         if (user != null){
             //将用户的信息放在session中

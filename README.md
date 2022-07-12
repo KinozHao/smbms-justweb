@@ -20,3 +20,4 @@
 ### 其他
 + 狂神讲解采用的Tomcat为v9此项目采用的为Tomcat10,Maven的依赖和教程有所不同请留意
 + 项目需要的Mysql创表语句存放在src/resources下
++ maven配置和maven仓库都存在jdbc驱动的情况下tomcat运行后报错,解决方案在tomcat的lib目录下添加jdbc驱动jar包
