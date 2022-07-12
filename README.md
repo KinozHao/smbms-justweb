@@ -1,23 +1,23 @@
-## ³¬ÊÐ¶©µ¥¹ÜÀíÏµÍ³
-±¾ÏîÄ¿»ùÓÚjavaWeb+jsp+Mysql+Tomcat+Ç°¶Ë¡£
+## è¶…å¸‚è®¢å•ç®¡ç†ç³»ç»Ÿ
+æœ¬é¡¹ç›®åŸºäºŽjavaWeb+jsp+Mysql+Tomcat+å‰ç«¯ã€‚
 
-½Ì³Ì:[¿ñÉñËµ:JavaWeb](https://www.bilibili.com/video/BV12J411M7Sj?p=30)
-### ¿ª·¢»·¾³
+æ•™ç¨‹:[ç‹‚ç¥žè¯´:JavaWeb](https://www.bilibili.com/video/BV12J411M7Sj?p=30)
+### å¼€å‘çŽ¯å¢ƒ
 1. IDEA v2020.1.3
 2. Tomcat v10.0.22
 3. Maven v3.6.3
 4. Mysql v5.7.20
 5. git v2.35.1
 
-### Ñ§Ï°¼ÇÂ¼
-+ 2022-7-5 »·¾³ÅäÖÃ³É¹¦Íê³ÉÏîÄ¿µÄµÄentityÀà
-+ 2022-7-6 Íê³ÉµÇÂ¼×¢Ïú¹¦ÄÜ¡¢ÖÐÎÄÂÒÂëFilter¡¢Î´µÇÂ¼½ûÖ¹·ÃÎÊÄÚ²¿Ò³ÃæSysFilter
-+ 2022-7-8 Íê³ÉÐÞ¸ÄÃÜÂë¹¦ÄÜ
-+ 2022-7-10 Íê³ÉÓÃ»§¹ÜÀíÒ³ÃæµÄ²éÑ¯¡¢·ÖÒ³¡¢Ìø×ª¹¦ÄÜ
-+ 2022-7-11 Íê³É¶©µ¥¹ÜÀíÒ³Ãæ²éÑ¯¡¢ÓÃ»§µÇÂ¼ÃÜÂëÐ£Ñé
+### å­¦ä¹ è®°å½•
++ 2022-7-5 çŽ¯å¢ƒé…ç½®æˆåŠŸå®Œæˆé¡¹ç›®çš„çš„entityç±»
++ 2022-7-6 å®Œæˆç™»å½•æ³¨é”€åŠŸèƒ½ã€ä¸­æ–‡ä¹±ç Filterã€æœªç™»å½•ç¦æ­¢è®¿é—®å†…éƒ¨é¡µé¢SysFilter
++ 2022-7-8 å®Œæˆä¿®æ”¹å¯†ç åŠŸèƒ½
++ 2022-7-10 å®Œæˆç”¨æˆ·ç®¡ç†é¡µé¢çš„æŸ¥è¯¢ã€åˆ†é¡µã€è·³è½¬åŠŸèƒ½
++ 2022-7-11 å®Œæˆè®¢å•ç®¡ç†é¡µé¢æŸ¥è¯¢ã€ç”¨æˆ·ç™»å½•å¯†ç æ ¡éªŒ
 
 
-### ÆäËû
-+ ¿ñÉñ½²½â²ÉÓÃµÄTomcatÎªv9´ËÏîÄ¿²ÉÓÃµÄÎªTomcat10,MavenµÄÒÀÀµºÍ½Ì³ÌÓÐËù²»Í¬ÇëÁôÒâ
-+ ÏîÄ¿ÐèÒªµÄMysql´´±íÓï¾ä´æ·ÅÔÚsrc/resourcesÏÂ
-+ mavenÅäÖÃºÍmaven²Ö¿â¶¼´æÔÚjdbcÇý¶¯µÄÇé¿öÏÂtomcatÔËÐÐºó±¨´í,½â¾ö·½°¸ÔÚtomcatµÄlibÄ¿Â¼ÏÂÌí¼ÓjdbcÇý¶¯jar°ü
+### å…¶ä»–
++ ç‹‚ç¥žè®²è§£é‡‡ç”¨çš„Tomcatä¸ºv9æ­¤é¡¹ç›®é‡‡ç”¨çš„ä¸ºTomcat10,Mavençš„ä¾èµ–å’Œæ•™ç¨‹æœ‰æ‰€ä¸åŒè¯·ç•™æ„
++ é¡¹ç›®éœ€è¦çš„Mysqlåˆ›è¡¨è¯­å¥å­˜æ”¾åœ¨src/resourcesä¸‹
++ mavené…ç½®å’Œmavenä»“åº“éƒ½å­˜åœ¨jdbcé©±åŠ¨çš„æƒ…å†µä¸‹tomcatè¿è¡ŒåŽæŠ¥é”™,è§£å†³æ–¹æ¡ˆåœ¨tomcatçš„libç›®å½•ä¸‹æ·»åŠ jdbcé©±åŠ¨jaråŒ…
