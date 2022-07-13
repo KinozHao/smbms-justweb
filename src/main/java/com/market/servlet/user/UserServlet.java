@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.market.entity.Role;
 import com.market.entity.User;
 import com.market.service.role.RoleServiceImpl;
+import com.market.service.user.UserService;
 import com.market.service.user.UserServiceImpl;
 import com.market.util.Constants;
 import com.market.util.PageSupport;
@@ -14,6 +15,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,8 +31,15 @@ import java.util.Map;
 public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getParameter("method");
-        if (method.equals("savepwd") && method !=null){
+        if (method.equals("add") && method != null){
+            addUser(req,resp);
+        }else if (method.equals("savepwd") && method !=null){
             updatePwd(req, resp);
         }else if (method.equals("pwdmodify") && method !=null){
             pwdModify(req,resp);
@@ -99,7 +110,7 @@ public class UserServlet extends HttpServlet {
 
     }
 
-    //难点
+    //用户分页
     private void query(HttpServletRequest req, HttpServletResponse resp) {
         //1.从前端获取数据
         String queryUserName = req.getParameter("queryname");
@@ -128,13 +139,13 @@ public class UserServlet extends HttpServlet {
         //获取用户总数 (分页:上一页 下一页情况)
         int totalCount = user.getUserCount(queryUserName,queryUserRole);
         //总页数支持
-        PageSupport pageSupport = new PageSupport();
-        pageSupport.setCurrentPageNo(currentPageNo);
-        pageSupport.setPageSize(pageSize);
-        pageSupport.setTotalCount(totalCount);
+        PageSupport pst = new PageSupport();
+        pst.setCurrentPageNo(currentPageNo);
+        pst.setPageSize(pageSize);
+        pst.setTotalCount(totalCount);
 
         //总共有几页
-        int totalPageCount = pageSupport.getTotalPageCount();   //使用狂神工具类
+        int totalPageCount = pst.getTotalPageCount();   //使用狂神工具类
         //int totalPageCount = totalCount/pageSize +1;   //手动计算
 
         //4.控制首页和尾页(相当于业务需求)
@@ -169,9 +180,39 @@ public class UserServlet extends HttpServlet {
 
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
-    }
+    //添加用户
+    // TODO: 2022/7/13 无法提交用户表单 用户角色设置无效 
+    private void addUser(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        String userCode = req.getParameter("userCode");
+        String userName  = req.getParameter("userName");
+        String userPassword = req.getParameter("userPassword");
+        String gender= req.getParameter("gender");
+        String birthday= req.getParameter("birthday");
+        String phone= req.getParameter("phone");
+        String address = req.getParameter("address");
+        String userRole= req.getParameter("userRole");
 
+        User user = new User();
+        user.setUserCode(userCode);
+        user.setUserName(userName);
+        user.setUserpassword(userPassword);
+        user.setAddress(address);
+        try {
+            user.setBirthday(new SimpleDateFormat("yyy-MM-dd").parse(birthday));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        user.setGender(Integer.valueOf(gender));
+        user.setPhone(phone);
+        user.setUserrole(Integer.valueOf(userRole));
+        user.setCreationdate(new Date());
+        user.setCreatedby(((User)req.getSession().getAttribute(Constants.USER_SESSION)).getId());
+
+        UserServiceImpl use = new UserServiceImpl();
+        if (use.addUser(user)){
+            resp.sendRedirect(req.getContextPath()+"/jsp/user.do?method=query");
+        }else {
+            req.getRequestDispatcher("useradd.jsp").forward(req,resp);
+        }
+    }
 }

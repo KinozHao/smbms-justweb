@@ -166,5 +166,37 @@ public class UserDaoImpl implements UserDao{
         return userList;
     }
 
+    @Override
+    //Q&A java.sql.SQLException: No value specified for parameter 5
+    //实际获取参数和sql语句中参数不符合
+    public int addUser(Connection con, User user) throws SQLException {
+        PreparedStatement state = null;
+        int updateRows = 0;
+        if (con != null){
+            String sql = "insert into smbms_user (userCode, userName, userPassword, gender, birthday, phone, address," +
+                    "userRole, createdBy, creationDate)" +
+                    "values (?,?,?,?,?,?,?,?,?,?);";
 
+                ArrayList<Object> list = new ArrayList<>();
+                list.add(user.getUserCode());
+                list.add(user.getUserName());
+                list.add(user.getUserpassword());
+                list.add(user.getGender());
+                list.add(user.getBirthday());
+                list.add(user.getPhone());
+                list.add(user.getAddress());
+                list.add(user.getUserrole());
+                list.add(user.getCreatedby());
+                list.add(user.getCreationdate());
+                Object[] param = list.toArray();
+
+            Object[] params = {user.getUserCode(),user.getUserName(),user.getUserpassword(),
+                    user.getUserrole(),user.getGender(),user.getBirthday(),
+                    user.getPhone(),user.getAddress(),user.getCreationdate(),user.getCreatedby()};
+            updateRows = BaseDao.execute(con, state, sql,param);
+
+            BaseDao.CloseConnection(null,state,null);
+        }
+        return updateRows;
+    }
 }

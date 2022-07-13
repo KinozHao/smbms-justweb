@@ -15,7 +15,7 @@ public class User {
 
     private Integer gender;
     
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    //@DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthday;
 
     private String phone;

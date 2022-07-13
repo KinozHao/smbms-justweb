@@ -96,28 +96,34 @@ public class UserServiceImpl implements UserService{
         return userList;
     }
 
-    /*@Test
-    public void Test1(){
-        //测试是否可以成功修改密码
-        UserServiceImpl use = new UserServiceImpl();
-        boolean b = use.updatePwd(2, "111119");
-        System.out.println("用户密码修改:"+b);
+    @Override
+    public boolean addUser(User user) {
+        boolean flag = false;
+        Connection con = null;
+        try {
+            con = BaseDao.getConnection();
+            con.setAutoCommit(false); //开启事务
+            int updateRows = userDao.addUser(con, user);
+            con.commit();
+            if (updateRows>0){
+                flag = true;
+                System.out.println("添加成功!");
+            }else {
+                System.out.println("添加失败!");
+            }
+        } catch (SQLException e) {
+            try {
+                System.out.println("事件提交失败，回滚版本");
+                con.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            e.printStackTrace();
+        }finally {
+            //释放流资源
+            BaseDao.CloseConnection(con,null,null);
+        }
+        return flag;
     }
-    @Test
-    public void Test2(){
-        UserServiceImpl us = new UserServiceImpl();
-        User admin = us.Login("admin", "123");
-        System.out.println(admin.getUserpassword());
-    }
-    @Test
-    public void Test3(){
-        UserServiceImpl use = new UserServiceImpl();
-        System.out.println(use.getUserCount(null, 3));
-    }*/
 
-      /*@Test
-    public void Test4(){
-        UserServiceImpl us = new UserServiceImpl();
-        System.out.println(us.getUserList(null, 3, 2, 3));
-    }*/
 }

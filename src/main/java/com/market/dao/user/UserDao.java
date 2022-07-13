@@ -1,6 +1,5 @@
 package com.market.dao.user;
 
-import com.market.entity.Role;
 import com.market.entity.User;
 
 import java.sql.Connection;
@@ -24,5 +23,8 @@ public interface UserDao {
 
     //条件查询-用户列表
     List<User> getUserList(Connection con,String userName,int userRole,int currentPageNo,int pageSize)throws SQLException;
+
+    //添加用户
+    int addUser(Connection con,User user)throws SQLException;
 
 }

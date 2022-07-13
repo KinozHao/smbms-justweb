@@ -8,7 +8,6 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/market/entity/Provider.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/market/entity/Role.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/market/entity/User.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/market/entity/UserRole.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/market/util/PageSupport.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/smbms.sql" charset="GBK" />
