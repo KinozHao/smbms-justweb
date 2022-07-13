@@ -13,7 +13,7 @@ public class UserServiceTest {
     public void Test1(){
         //测试是否可以成功修改密码
         UserServiceImpl use = new UserServiceImpl();
-        boolean flag = use.updatePwd(3, "aa12345");
+        boolean flag = use.updatePwd(23, "231243");
         System.out.println("用户密码修改:"+flag);
     }
     @Test
@@ -43,5 +43,29 @@ public class UserServiceTest {
         User user = new User();
         user.setUserName("赵六");
         System.out.println(us.addUser(user));
+    }
+
+    @Test
+    public void delTest(){
+        UserServiceImpl use = new UserServiceImpl();
+        User user = new User();
+        System.out.println(use.delUser((long) 14));
+    }
+    @Test
+    public void getUserTest(){
+        UserServiceImpl use = new UserServiceImpl();
+        System.out.println(use.getUserByID("1"));
+    }
+    @Test
+    public void updateUserInfo(){
+        UserServiceImpl use = new UserServiceImpl();
+        User user = new User();
+        user.setId(23);
+        user.setUserName("熊二");
+        user.setUserCode("bearTwo");
+        user.setPhone("18577416598");
+        user.setAddress("黑龙江省大庆森林熊家屯1号");
+        user.setGender(1);
+        System.out.println(use.modify(user));
     }
 }

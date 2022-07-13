@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.awt.desktop.UserSessionEvent;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -45,10 +46,15 @@ public class UserServlet extends HttpServlet {
             pwdModify(req,resp);
         }else if (method.equals("query") && method != null){
             query(req,resp);
+        }else if (method.equals("deluser") && method != null){
+            delUser(req,resp);
+        }else if (method.equals("view") && method != null) {
+            getUserById(req, resp);
+        }else if (method.equals("modifyexe") && method != null){
+            modify(req,resp);
         }
 
     }
-
 
     //更新密码
     private void updatePwd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -213,6 +219,80 @@ public class UserServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath()+"/jsp/user.do?method=query");
         }else {
             req.getRequestDispatcher("useradd.jsp").forward(req,resp);
+        }
+    }
+
+    //删除用户
+    private void delUser(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String id = req.getParameter("uid");
+        int delId = 0;
+        try {
+            delId = Integer.parseInt(id);
+        }catch (Exception e){
+            delId = 0;
+        }
+
+        HashMap<String, String> resultMap = new HashMap<>();
+        if (delId<=0){
+            resultMap.put("delResult","notexist");
+        }else {
+            UserServiceImpl use = new UserServiceImpl();
+            if (use.delUser((long) delId)){
+                resultMap.put("delResult","true");
+            }else {
+                resultMap.put("delResult","false");
+            }
+        }
+        resp.setContentType("application/json");
+        PrintWriter out = resp.getWriter();
+        out.write(JSONArray.toJSONString(resultMap));
+        out.flush();
+        out.close();
+    }
+
+    //修改用户信息
+    // TODO: 2022/7/13 无法跳转到修改页面
+    private void modify(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        String id = req.getParameter("uid");
+        String userName = req.getParameter("userName");
+        String gender = req.getParameter("gender");
+        String birthday = req.getParameter("birthday");
+        String phone = req.getParameter("phone");
+        String address = req.getParameter("address");
+        String userRole = req.getParameter("userRole");
+
+        User user = new User();
+        user.setId(Integer.valueOf(id));
+        user.setUserName(userName);
+        user.setGender(Integer.parseInt(gender));
+        try {
+            user.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        user.setPhone(phone);
+        user.setAddress(address);
+        user.setUserrole(Integer.parseInt(userRole));
+        //通过session判定谁操作修改的此信息
+        user.setModifyby(((User) req.getSession().getAttribute(Constants.USER_SESSION)).getId());
+        user.setModifydate(new Date());
+
+        UserServiceImpl userService = new UserServiceImpl();
+        if (userService.modify(user)){
+            resp.sendRedirect(req.getContextPath()+"/jsp/user.do?method=query");
+        }else {
+            req.getRequestDispatcher("usermodify.jsp").forward(req,resp);
+        }
+    }
+
+    //查询用户信息
+    private void getUserById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("uid");
+        if (id != null){
+            UserServiceImpl use = new UserServiceImpl();
+            User user = use.getUserByID(id);
+            req.setAttribute("user",user);
+            req.getRequestDispatcher("userview.jsp").forward(req,resp);
         }
     }
 }

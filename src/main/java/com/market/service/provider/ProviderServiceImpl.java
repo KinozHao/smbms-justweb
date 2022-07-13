@@ -40,8 +40,6 @@ public class ProviderServiceImpl implements ProviderService{
         return providerList;
     }
 
-    // TODO: 2022/7/11 测试proName查询有问题
-    // TODO: 2022/7/11 已解决 sql语句第一句删除;截断 
     @Test
     public void Test(){
         ProviderServiceImpl pss = new ProviderServiceImpl();

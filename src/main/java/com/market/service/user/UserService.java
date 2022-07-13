@@ -26,4 +26,16 @@ public interface UserService {
 
     //添加用户
     boolean addUser(User user);
+
+    //删除用户 根据用户id
+    boolean delUser(Long delID);
+
+    //修改用户信息
+    boolean modify(User user);
+
+    //查看用户信息 根据用户id
+    User getUserByID(String id);
+
+
+
 }

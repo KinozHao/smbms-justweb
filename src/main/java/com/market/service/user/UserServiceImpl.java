@@ -4,7 +4,6 @@ import com.market.dao.BaseDao;
 import com.market.dao.user.UserDao;
 import com.market.dao.user.UserDaoImpl;
 import com.market.entity.User;
-import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -47,7 +46,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    //修改当前用户密码
+    //修改登录用户密码
     public boolean updatePwd(long id, String password) {
         boolean flag = false;
         Connection con = null;
@@ -67,6 +66,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    //获取总用户数,根据用户角色
     public int getUserCount(String QueryUserName, int QueryUserRole) {
         Connection con = null;
         int count = 0;
@@ -82,6 +82,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    //用户表分页
     public List<User> getUserList(String userName, int userRole, int currentPageNo, int pageSize) {
         Connection con = null;
         List<User> userList = null;
@@ -97,6 +98,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    //增
     public boolean addUser(User user) {
         boolean flag = false;
         Connection con = null;
@@ -125,5 +127,59 @@ public class UserServiceImpl implements UserService{
         }
         return flag;
     }
+
+    @Override
+    //删
+    public boolean delUser(Long delID) {
+        Connection con = null;
+        boolean flag = false;
+
+        try {
+            con = BaseDao.getConnection();
+            if (userDao.delUser(con,delID)>0){
+                flag = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            BaseDao.CloseConnection(con,null,null);
+        }
+        return flag;
+    }
+
+    @Override
+    //改
+    public boolean modify(User user) {
+        Connection con = null;
+        boolean flag = false;
+        try {
+            con = BaseDao.getConnection();
+            if (userDao.modify(con, user)>0){
+                flag = true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            BaseDao.CloseConnection(con,null,null);
+        }
+        return flag;
+    }
+
+    @Override
+    //查
+    public User getUserByID(String id) {
+        Connection con = null;
+        User user = null;
+        try {
+            con = BaseDao.getConnection();
+            user = userDao.getUserById(con, id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            BaseDao.CloseConnection(con,null,null);
+        }
+        return user;
+    }
+
 
 }

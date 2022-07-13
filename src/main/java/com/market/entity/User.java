@@ -2,10 +2,8 @@ package com.market.entity;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class User {
-    private Long id;
+    private Integer id;
 
     private String userCode;
 
@@ -24,11 +22,11 @@ public class User {
 
     private Integer userrole;
 
-    private Long createdby;
+    private Integer createdby;
 
     private Date creationdate;
 
-    private Long modifyby;
+    private Integer modifyby;
 
     private Date modifydate;
 
@@ -51,11 +49,11 @@ public class User {
         this.userRoleName = userRoleName;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -123,11 +121,11 @@ public class User {
         this.userrole = userrole;
     }
 
-    public Long getCreatedby() {
+    public Integer getCreatedby() {
         return createdby;
     }
 
-    public void setCreatedby(Long createdby) {
+    public void setCreatedby(Integer createdby) {
         this.createdby = createdby;
     }
 
@@ -139,11 +137,11 @@ public class User {
         this.creationdate = creationdate;
     }
 
-    public Long getModifyby() {
+    public Integer getModifyby() {
         return modifyby;
     }
 
-    public void setModifyby(Long modifyby) {
+    public void setModifyby(Integer modifyby) {
         this.modifyby = modifyby;
     }
 

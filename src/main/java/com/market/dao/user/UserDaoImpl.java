@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao{
             if (result.next()){
                 //为实体类User里面的属性和SQL进行结合
                 user = new User();
-                user.setId(result.getLong("id"));
+                user.setId(result.getInt("id"));
                 user.setUserCode(result.getString("userCode"));
                 user.setUserName(result.getString("userName"));
                 user.setUserpassword(result.getString("userPassword"));
@@ -41,9 +41,9 @@ public class UserDaoImpl implements UserDao{
                 user.setPhone(result.getString("phone"));
                 user.setAddress(result.getString("address"));
                 user.setUserrole(result.getInt("userRole"));
-                user.setCreatedby(result.getLong("createdBy"));
+                user.setCreatedby(result.getInt("createdBy"));
                 user.setCreationdate(result.getDate("creationDate"));
-                user.setModifyby(result.getLong("modifyBy"));
+                user.setModifyby(result.getInt("modifyBy"));
                 user.setModifydate(result.getDate("modifyDate"));
             }
 
@@ -72,7 +72,6 @@ public class UserDaoImpl implements UserDao{
     }
 
     //动态sql 较难 多表查询
-    //根据用户名或角色查询用户总数
     @Override
     public int getUserCount(Connection con, String userName, int userRole) throws SQLException {
         ResultSet result = null;
@@ -150,7 +149,7 @@ public class UserDaoImpl implements UserDao{
             result = BaseDao.execute(con,state,result,change_sql,change_param);
             while (result.next()){
                 User user = new User();
-                user.setId(result.getLong("id"));
+                user.setId(result.getInt("id"));
                 user.setUserCode(result.getString("userCode"));
                 user.setUserName(result.getString("userName"));
                 user.setGender(result.getInt("gender"));
@@ -167,8 +166,7 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    //Q&A java.sql.SQLException: No value specified for parameter 5
-    //实际获取参数和sql语句中参数不符合
+    //增×
     public int addUser(Connection con, User user) throws SQLException {
         PreparedStatement state = null;
         int updateRows = 0;
@@ -198,5 +196,80 @@ public class UserDaoImpl implements UserDao{
             BaseDao.CloseConnection(null,state,null);
         }
         return updateRows;
+    }
+
+    @Override
+    //删√
+    public int delUser(Connection con, Long delID) throws SQLException {
+        PreparedStatement state = null;
+        int delFlag = 0;
+        if (con != null){
+            String sql = "delete from smbms_user where id=?";
+            Object[] param = {delID};
+            delFlag = BaseDao.execute(con, state, sql, param);
+
+            BaseDao.CloseConnection(null,state,null);
+        }
+        return delFlag;
+    }
+
+    @Override
+    //改×
+    public int modify(Connection con, User user) throws SQLException {
+        PreparedStatement state = null;
+        int flag = 0;
+        if (con != null){
+            String sql = "update smbms_user set userName=?,gender=?,birthday=?,phone=?,address=?,userRole=?,modifyBy=?,modifyDate=? where id = ? ";
+            ArrayList<Object> param = new ArrayList<>();
+            param.add(user.getUserName());
+            param.add(user.getGender());
+            param.add(user.getBirthday());
+            param.add(user.getPhone());
+            param.add(user.getAddress());
+            param.add(user.getUserrole());
+            param.add(user.getModifyby());
+            param.add(user.getModifydate());
+            param.add(user.getId());
+            Object[] change_param = param.toArray();
+
+            //方式二
+            Object[] params = {user.getUserName(),user.getGender(),user.getBirthday(),
+                    user.getPhone(),user.getAddress(),user.getUserrole(),user.getModifyby(),
+                    user.getModifydate(),user.getId()};
+            flag = BaseDao.execute(con,state,sql,params);
+        }
+        return flag;
+    }
+
+    @Override
+    //查√
+    public User getUserById(Connection con, String id) throws SQLException {
+        ResultSet rs = null;
+        PreparedStatement state = null;
+        User user = null;
+        if (con != null){
+            String sql = "select u.*,r.roleName as userRoleName from smbms_user u,smbms_role r where u.id=? and u.userRole = r.id";
+            Object[] param = {id};
+            rs = BaseDao.execute(con, state, rs, sql, param);
+            while (rs.next()){
+                user = new User();
+                user.setId(rs.getInt("id"));
+                user.setUserCode(rs.getString("userCode"));
+                user.setUserName(rs.getString("userName"));
+                user.setUserpassword(rs.getString("userPassword"));
+                user.setGender(rs.getInt("gender"));
+                user.setBirthday(rs.getDate("birthday"));
+                user.setPhone(rs.getString("phone"));
+                user.setAddress(rs.getString("address"));
+                user.setUserrole(rs.getInt("userRole"));
+                user.setCreatedby(rs.getInt("createdBy"));
+                user.setCreationdate(rs.getTimestamp("creationDate"));
+                user.setModifyby(rs.getInt("modifyBy"));
+                user.setModifydate(rs.getTimestamp("modifyDate"));
+                user.setUserRoleName(rs.getString("userRoleName"));
+            }
+            BaseDao.CloseConnection(con,null,null);
+        }
+        return user;
     }
 }
